@@ -1,6 +1,7 @@
 package com.lqy.sell.repository;
 
 import com.lqy.sell.dataobject.ProductInfo;
+import com.lqy.sell.enums.ProductStatusEnum;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +33,7 @@ public class ProductInfoRepositoryTest {
         productInfo.setProductStock(100);
         productInfo.setProductDescription("很好喝的粥");
         productInfo.setProductIcon("http://xxxxx.jpg");
-        productInfo.setProductStatus(0);
+        productInfo.setProductStatus(ProductStatusEnum.DOWN.getCode());
         productInfo.setCategoryType(2);
 
         ProductInfo save = repository.save(productInfo);
