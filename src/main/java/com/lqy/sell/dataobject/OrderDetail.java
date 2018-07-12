@@ -7,18 +7,28 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 
 /**
- * 商品信息
+ * 订单详情
  * Created by Rodriguez
- * 2018/7/12 12:23
+ * 2018/7/12 19:06
  */
 @Entity
 @Data
-public class ProductInfo {
+public class OrderDetail {
+
+    /**
+     * 订单详情Id
+     */
+    @Id
+    private String detailId;
+
+    /**
+     * 订单Id
+     */
+    private String orderId;
 
     /**
      * 商品id
      */
-    @Id
     private String productId;
 
     /**
@@ -32,31 +42,13 @@ public class ProductInfo {
     private BigDecimal productPrice;
 
     /**
-     * 商品库存
+     * 商品数量
      */
-    private Integer productStock;
-
-    /**
-     * 商品描述
-     */
-    private String productDescription;
+    private Integer productQuantity;
 
     /**
      * 商品图片
      */
     private String productIcon;
 
-    /**
-     * 商品状态  0正常 1下架
-     */
-    private Integer productStatus;
-
-    /**
-     * 类目编号
-     */
-    private Integer categoryType;
-
-    /*private Date createTime;
-
-    private Date updateTime;*/
 }
