@@ -4,7 +4,7 @@
     <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>
-                %d - %msg%n
+                %date [%thread] %-5level %logger{80} [%file:%line] %msg%n
             </pattern>
         </layout>
     </appender>
@@ -18,7 +18,7 @@
         </filter>
         <encoder>
             <pattern>
-                %d - %msg%n
+                %date [%thread] %-5level %logger{80} [%file:%line] %msg%n
             </pattern>
         </encoder>
         <!-- 滚动策略: 每天一个日志文件 -->
@@ -37,7 +37,7 @@
         </filter>
         <encoder>
             <pattern>
-                %d - %msg%n
+                %date [%thread] %-5level %logger{80} [%file:%line] %msg%n
             </pattern>
         </encoder>
         <!-- 滚动策略: 每天一个日志文件 -->
