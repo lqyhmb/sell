@@ -1,8 +1,10 @@
 package com.lqy.sell.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.lqy.sell.dataobject.OrderDetail;
 import com.lqy.sell.enums.OrderStatusEnum;
 import com.lqy.sell.enums.PayStatusEnum;
+import com.lqy.sell.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -60,11 +62,13 @@ public class OrderMasterDto {
     /**
      * 创建时间
      */
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date createTime;
 
     /**
      * 更新时间
      */
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 
     /**
