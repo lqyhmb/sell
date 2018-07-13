@@ -1,13 +1,17 @@
 package com.lqy.sell.service.impl;
 
 import com.lqy.sell.dataobject.ProductInfo;
+import com.lqy.sell.dto.CartDto;
 import com.lqy.sell.enums.ProductStatusEnum;
+import com.lqy.sell.enums.ResultEnum;
+import com.lqy.sell.exception.SellException;
 import com.lqy.sell.repository.ProductInfoRepository;
 import com.lqy.sell.service.ProductInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -40,5 +44,36 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     @Override
     public ProductInfo save(ProductInfo productInfo) {
         return repository.save(productInfo);
+    }
+
+    @Override
+    @Transactional
+    public void increaseStock(List<CartDto> cartDtoList) {
+        for (CartDto cartDto : cartDtoList) {
+            ProductInfo productInfo = repository.findOne(cartDto.getProductId());
+            if (productInfo == null) {
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+            Integer result = productInfo.getProductStock() + cartDto.getProductQuantity();
+            productInfo.setProductStock(result);
+            repository.save(productInfo);
+        }
+    }
+
+    @Override
+    @Transactional
+    public void decreaseStock(List<CartDto> cartDtoList) {
+        for (CartDto cartDto : cartDtoList) {
+            ProductInfo productInfo = repository.findOne(cartDto.getProductId());
+            if (productInfo == null) {
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+            Integer result = productInfo.getProductStock() - cartDto.getProductQuantity();
+            if (result < 0) {
+                throw new SellException(ResultEnum.PRODUCT_STOCK_ERROR);
+            }
+            productInfo.setProductStock(result);
+            repository.save(productInfo);
+        }
     }
 }

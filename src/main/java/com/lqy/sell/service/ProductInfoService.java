@@ -1,6 +1,7 @@
 package com.lqy.sell.service;
 
 import com.lqy.sell.dataobject.ProductInfo;
+import com.lqy.sell.dto.CartDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -33,6 +34,8 @@ public interface ProductInfoService {
     ProductInfo save(ProductInfo productInfo);
 
     // 加库存
+    void increaseStock(List<CartDto> cartDtoList);
 
     // 减库存
+    void decreaseStock(List<CartDto> cartDtoList);
 }
