@@ -17,6 +17,9 @@ import java.util.List;
  * 2018/7/13 8:56
  */
 @Data
+// 字段值为null时不返回该字段
+//@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderMasterDto {
 
     /**

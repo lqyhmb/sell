@@ -8,6 +8,7 @@ import lombok.Data;
  * 2018/7/12 13:03
  */
 @Data
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResultVO<T> {
 
     /**

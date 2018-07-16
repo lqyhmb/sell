@@ -6,6 +6,7 @@ import com.lqy.sell.dto.OrderMasterDto;
 import com.lqy.sell.enums.ResultEnum;
 import com.lqy.sell.exception.SellException;
 import com.lqy.sell.form.OrderForm;
+import com.lqy.sell.service.BuyerService;
 import com.lqy.sell.service.OrderMasterService;
 import com.lqy.sell.utils.ResultVOUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -34,6 +35,9 @@ public class BuyerOrderController {
 
     @Autowired
     private OrderMasterService orderMasterService;
+
+    @Autowired
+    private BuyerService buyerService;
 
     // 创建订单
     @PostMapping("/create")
@@ -70,7 +74,17 @@ public class BuyerOrderController {
     }
 
     // 订单详情（查看单个订单）
+    @GetMapping("/detail")
+    public ResultVO<OrderMasterDto> detail(@RequestParam("openid") String openid, @RequestParam("orderId") String orderId) {
+        OrderMasterDto orderMasterDto = buyerService.findOrderOne(openid, orderId);
+        return ResultVOUtil.success(orderMasterDto);
+    }
 
     // 取消订单
+    @PostMapping("/cancel")
+    public ResultVO cancel(@RequestParam("openid") String openid, @RequestParam("orderId") String orderId) {
+        buyerService.cancelOrder(openid, orderId);
+        return ResultVOUtil.success();
+    }
 
 }
