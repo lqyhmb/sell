@@ -22,7 +22,7 @@ public interface OrderMasterService {
     OrderMasterDto findOne(String orderId);
 
     /**
-     * 查询订单列表
+     * 查询某个人的订单列表
      */
     Page<OrderMasterDto> findList(String buyerOpenid, Pageable pageable);
 
@@ -40,4 +40,10 @@ public interface OrderMasterService {
      * 支付订单
      */
     OrderMasterDto paid(OrderMasterDto orderMasterDto);
+
+    /**
+     * 查询所有订单列表
+     */
+    Page<OrderMasterDto> findList(Pageable pageable);
+
 }

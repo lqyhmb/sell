@@ -95,4 +95,11 @@ public class OrderMasterServiceImplTest {
         Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), paid.getPayStatus());
     }
 
+    @Test
+    public void findAllList() throws Exception {
+        PageRequest request = new PageRequest(0, 5);
+        Page<OrderMasterDto> orderMasterDtoPage = orderMasterService.findList(request);
+        //Assert.assertNotEquals(0, orderMasterDtoPage.getContent().size());
+        Assert.assertTrue("查询所有订单列表", orderMasterDtoPage.getContent().size() > 0);
+    }
 }
