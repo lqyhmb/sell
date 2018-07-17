@@ -1,10 +1,15 @@
 package com.lqy.sell.dataobject;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lqy.sell.enums.ProductStatusEnum;
+import com.lqy.sell.utils.EnumUtil;
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * 商品信息
@@ -13,6 +18,7 @@ import java.math.BigDecimal;
  */
 @Entity
 @Data
+@DynamicUpdate
 public class ProductInfo {
 
     /**
@@ -56,7 +62,18 @@ public class ProductInfo {
      */
     private Integer categoryType;
 
-    /*private Date createTime;
+    /**
+     * 创建时间
+     */
+    private Date createTime;
 
-    private Date updateTime;*/
+    /**
+     * 修改时间
+     */
+    private Date updateTime;
+
+    @JsonIgnore // 对象转json会忽略该字段
+    public ProductStatusEnum getProductStatusEnum() {
+        return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
+    }
 }

@@ -43,7 +43,7 @@ public class ProductInfoServiceImplTest {
         PageRequest request = new PageRequest(0, 5); // PageRequest实现了Pageable接口
         Page<ProductInfo> productInfoPage = productInfoService.findAll(request);
         //System.out.println(productInfoPage.getTotalElements());
-        Assert.assertNotEquals(0,productInfoPage.getContent().size());
+        Assert.assertNotEquals(0, productInfoPage.getContent().size());
     }
 
     @Test
@@ -60,6 +60,18 @@ public class ProductInfoServiceImplTest {
 
         ProductInfo save = productInfoService.save(productInfo);
         Assert.assertNotNull(save);
+    }
+
+    @Test
+    public void onSale() throws Exception {
+        ProductInfo productInfo = productInfoService.onSale("100001");
+        Assert.assertEquals(ProductStatusEnum.UP, productInfo.getProductStatusEnum());
+    }
+
+    @Test
+    public void offSale() throws Exception {
+        ProductInfo productInfo = productInfoService.offSale("100001");
+        Assert.assertEquals(ProductStatusEnum.DOWN, productInfo.getProductStatusEnum());
     }
 
 }

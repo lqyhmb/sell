@@ -8,8 +8,8 @@ import lombok.Getter;
  * 2018/7/12 12:42
  */
 @Getter
-public enum ProductStatusEnum {
-    UP(0, "在架"), DOWN(1, "下架");
+public enum ProductStatusEnum implements CodeEnum{
+    UP(0, "上架"), DOWN(1, "下架");
 
     private Integer code;
 

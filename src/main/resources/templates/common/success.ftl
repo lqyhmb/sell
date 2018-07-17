@@ -14,7 +14,7 @@
                     <h4>
                         成功!
                     </h4>
-                    <strong>${msg}!</strong>
+                    <strong>${msg!""}!</strong>
                     <a href="${url}" class="alert-link">3秒后自动跳转</a>
                 </div>
             </div>
