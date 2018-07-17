@@ -1,9 +1,11 @@
 package com.lqy.sell.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.lqy.sell.dataobject.OrderDetail;
 import com.lqy.sell.enums.OrderStatusEnum;
 import com.lqy.sell.enums.PayStatusEnum;
+import com.lqy.sell.utils.EnumUtil;
 import com.lqy.sell.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 
@@ -78,4 +80,14 @@ public class OrderMasterDto {
      * 订单详情列表
      */
     private List<OrderDetail> orderDetailList;
+
+    @JsonIgnore // 对象转json会忽略该字段
+    public OrderStatusEnum getOrderStatusEnum() {
+        return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+        return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
 }

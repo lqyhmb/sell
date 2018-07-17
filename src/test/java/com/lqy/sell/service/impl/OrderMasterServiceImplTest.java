@@ -36,21 +36,21 @@ public class OrderMasterServiceImplTest {
     @Test
     public void create() throws Exception {
         OrderMasterDto orderMasterDto = new OrderMasterDto();
-        orderMasterDto.setBuyerName("廖先生");
-        orderMasterDto.setBuyerPhone("15243621661");
-        orderMasterDto.setBuyerAddress("名门华府1302");
+        orderMasterDto.setBuyerName("C罗");
+        orderMasterDto.setBuyerPhone("1234567890");
+        orderMasterDto.setBuyerAddress("宝安游泳场");
         orderMasterDto.setBuyerOpenid(BUYER_OPENID);
 
         // 购物车
         List<OrderDetail> orderDetailList = new ArrayList<>();
         OrderDetail o1 = new OrderDetail();
         o1.setProductId("100003");
-        o1.setProductQuantity(1);
+        o1.setProductQuantity(5);
         orderDetailList.add(o1);
 
         OrderDetail o2 = new OrderDetail();
-        o2.setProductId("100002");
-        o2.setProductQuantity(10);
+        o2.setProductId("100001");
+        o2.setProductQuantity(5);
         orderDetailList.add(o2);
 
         orderMasterDto.setOrderDetailList(orderDetailList);
