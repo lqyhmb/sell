@@ -24,7 +24,7 @@
 
                         <div class="form-group">
                             <label>价格</label>
-                            <input name="productPrice" value="${(productInfo.productPrice)!""}" type="number"
+                            <input name="productPrice" value="${(productInfo.productPrice)!""}" type="text"
                                    class="form-control"/>
                         </div>
 

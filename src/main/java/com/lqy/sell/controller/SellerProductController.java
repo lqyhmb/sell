@@ -6,6 +6,7 @@ import com.lqy.sell.exception.SellException;
 import com.lqy.sell.form.ProductForm;
 import com.lqy.sell.service.ProductCategoryService;
 import com.lqy.sell.service.ProductInfoService;
+import com.lqy.sell.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,9 +136,12 @@ public class SellerProductController {
             return new ModelAndView("common/error", map);
         }
         try {
-            ProductInfo productInfo = productInfoService.findOne(productForm.getProductId());
-            if (productInfo == null) {
-                productInfo = new ProductInfo();
+            ProductInfo productInfo = new ProductInfo();
+            // 商品id不为空，修改
+            if (!StringUtils.isEmpty(productForm.getProductId())) {
+                productInfo = productInfoService.findOne(productForm.getProductId());
+            } else {
+                productForm.setProductId(KeyUtil.genUniqueKey());
             }
             BeanUtils.copyProperties(productForm, productInfo);
             productInfoService.save(productInfo);
